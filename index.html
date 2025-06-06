@@ -40,25 +40,12 @@
       cursor: pointer;
       box-shadow: 0 0 10px #ff69b4;
     }
-    img, iframe {
+    img, video {
       max-width: 100%;
       border-radius: 10px;
     }
-    .responsive-video {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      max-width: 100%;
-      border-radius: 12px;
-    }
-    .responsive-video iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+
+    /* Memory Game Styles */
     .memory-game {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -100,6 +87,8 @@
     .memory-card-back {
       background-image: url('back.jpg');
     }
+
+    /* Modal Video */
     #videoModal {
       display: none;
       position: fixed;
@@ -111,10 +100,11 @@
       background: rgba(0,0,0,0.8);
       align-items: center;
       justify-content: center;
-      flex-direction: column;
     }
-    #nextAfterVideo {
-      margin-top: 20px;
+    #videoModal video {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 20px;
     }
   </style>
 </head>
@@ -136,41 +126,66 @@
 
 <!-- Layer 3 -->
 <div id="layer3" class="layer">
-  <h2>Sebelum Game, Siap-siap Dulu ya! ✨</h2>
-  <p>Main game memory buat buka hadiah spesial dari aku ✨</p>
-  <button onclick="nextLayer('layer4')">Main Sekarang! ✨</button>
+  <h2>Video Spesial 🎥</h2>
+  <video controls>
+    <source src="video_spesial.mp4" type="video/mp4">
+    Browser kamu tidak mendukung video.
+  </video>
+  <button onclick="nextLayer('layer4')">Lanjut ➡️</button>
 </div>
 
 <!-- Layer 4 - Memory Game -->
 <div id="layer4" class="layer">
   <h2>Mini Game Memory: Temukan Semua Pasangan 💖</h2>
+  <!-- Memory game container akan ditambahkan lewat JS -->
   <div id="videoModal">
-    <div class="responsive-video">
-      <iframe id="surpriseVideo" src="https://drive.google.com/file/d/1-NmsJzYReeUWLvn-hofmqwE5_g6gmLYb/preview" allow="autoplay" allowfullscreen></iframe>
-    </div>
-    <button id="nextAfterVideo" style="display: none;" onclick="nextLayer('layer5')">Lanjut ➡️</button>
+    <video id="surpriseVideo" controls>
+      <source src="surprise.mp4" type="video/mp4" />
+      Browser kamu tidak mendukung video.
+    </video>
   </div>
 </div>
 
-<!-- Layer 5 - Alasan Cinta -->
+<!-- Layer 5 -->
 <div id="layer5" class="layer">
   <h2>24 Reasons why ILoveYou Sooo Muchh 💕</h2>
   <ol style="text-align: left; max-width: 600px; margin: 0 auto;">
-    <!-- List kamu yang romantis di sini (dipotong untuk singkat) -->
     <li>Kamu bukan cuma pacar, tapi seseorang yang udah nemenin aku dari dulu.</li>
     <li>Kamu selalu tahu cara bikin aku ketawa, bahkan aku bisa lupa kalo aku tuh lgi bt HHAHAHA kocak.</li>
-    <!-- dan seterusnya -->
+    <li>Jaman Massenger kita seru banget ga boong.</li>
+    <li>Semoga kamu gapernah bosen ya, dengerin aku ngomong mulu.</li>
+    <li>Kita bisa ngobrol dari hal receh sampe yang dalam banget.</li>
+    <li>Kamu tuh konyolnya lucu, kadang ga abis pikir deh.</li>
+    <li>Kamu tahu cara nemenin aku tanpa harus ngomong apa-apa, TAPI MAUNYA DIAJAK NGOMONG WKWK.</li>
+    <li>Kamu hafal CERITA-CERITA aku, dari yang dulu-dulu ingett.</li>
+    <li>Kita sering berantem konyol, tapi ujungnya ngakak bareng atau kaya gajadi kesel ajah.</li>
+    <li>Syukur udh ga sering ngambek diemin aku, pinter ayank.</li>
+    <li>Melting bgt liat senyumnya, gemess aaa.</li>
+    <li>Kamu selalu ingetin aku, buat jauhin orang yang ga bener.</li>
+    <li>Kalo lagi sama kamu, beneran lupa deh capenya jalan xpander sama pajero.</li>
+    <li>Selalu nyemangatin aku, makasih sayang.</li>
+    <li>Kita bisa bikin lelucon yang orang lain gak paham, karna aku cuman cerita sama kamu.</li>
+    <li>Aku seneng kalo kamu tanyain "kenapa sayang?".</li>
+    <li>Kamu diem-diem tuh analisis sifat aku ya.</li>
+    <li>Ga ngapa-ngapain aja sama kamu SERUUU, kok bisa ya?.</li>
+    <li>Kamu itu tempat pulang, literally yang bakal aku cari setelah aku pulang kerja, pulang main setelah ibu.</li>
+    <li>Kamu bikin aku percaya kalo beneran aku bisa rasain cinta, apalagi dari pertemanan loh.</li>
+    <li>AKU NGERTI KAMU, KAU MENGERTI AKU, AKU SAYANG KAMU SELAMANYAAA~.</li>
+    <li>Kamu selalu punya cara sendiri buat nyelesain masalah, dan aku juga belajar dari kamu.</li>
+    <li>Dari dulu sama kamu gapernah bosen, kesel kadang doang kalo ngeyel tpi abis itu kocak lagi.</li>
+    <li>Hal terbaik yang gapernah aku rencanakan dan gapernah aku sangka-sangka, ANJAY.</li>
   </ol>
   <button onclick="nextLayer('layer6')">Lanjut</button>
 </div>
 
-<!-- Layer 6 - Penutup -->
 <div id="layer6" class="layer">
   <h2>Terima kasih 💗</h2>
   <p>Seneng rasanya bisa bahagia bareng kamu sejauh ini.</p>
   <p>I love you so much 🥺💕</p>
 </div>
 
+
+<!-- Script -->
 <script>
   function nextLayer(id) {
     document.querySelectorAll('.layer').forEach(layer => layer.classList.remove('active'));
@@ -232,9 +247,7 @@
             if (matchedPairs === images.length) {
               setTimeout(() => {
                 document.getElementById('videoModal').style.display = 'flex';
-                setTimeout(() => {
-                  document.getElementById('nextAfterVideo').style.display = 'inline-block';
-                }, 30000); // tampilkan tombol lanjut setelah 30 detik
+                document.getElementById('surpriseVideo').play();
               }, 800);
             }
           } else {
@@ -251,8 +264,19 @@
 
       gameContainer.appendChild(card);
     });
+    const surpriseVideo = document.getElementById('surpriseVideo');
+    surpriseVideo.addEventListener('ended', () => {
+      document.getElementById('videoModal').style.display = 'none';
+
+      const btn = document.createElement('button');
+      btn.textContent = 'Lanjut ➡️';
+      btn.onclick = () => nextLayer('layer5');
+      document.getElementById('layer4').appendChild(btn);
+    });
+
   }
 
+  // Deteksi saat layer4 aktif, baru jalankan game
   const observer = new MutationObserver(() => {
     if (document.getElementById('layer4').classList.contains('active') && !document.querySelector('.memory-game')) {
       createMemoryGame();
