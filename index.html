@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Surprise Ulang Tahun</title>
+  <style>
+    body {
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: top;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .layer {
+      display: none;
+      padding: 20px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      margin: 40px auto;
+      width: 90%;
+      max-width: 800px;
+    }
+    .active {
+      display: block;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff69b4;
+    }
+    img, video {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    /* Memory Game Styles */
+    .memory-game {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      justify-content: center;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .memory-card {
+      width: 100px;
+      height: 100px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    .memory-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .memory-card.flipped .memory-card-inner {
+      transform: rotateY(180deg);
+    }
+    .memory-card-front,
+    .memory-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      backface-visibility: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+    .memory-card-front {
+      transform: rotateY(180deg);
+    }
+    .memory-card-back {
+      background-image: url('back.jpg');
+    }
+
+    /* Modal Video */
+    #videoModal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      align-items: center;
+      justify-content: center;
+    }
+    #videoModal video {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Layer 1 -->
+<div id="layer1" class="layer active">
+  <h1>Happy Birthday, Sayang! 🎉</h1>
+  <p>This is my little tiny mini project to make you smile anjay❤️</p>
+  <button onclick="nextLayer('layer2')">Lanjut ➡️</button>
+</div>
+
+<!-- Layer 2 -->
+<div id="layer2" class="layer">
+  <h2>GEMINIKUH I LOVE YOU</h2>
+  <p>always special memory when im with you 🥰</p>
+  <button onclick="nextLayer('layer3')">Lanjut ➡️</button>
+</div>
+
+<!-- Layer 3 -->
+<div id="layer3" class="layer">
+  <h2>Video Spesial 🎥</h2>
+  <video controls>
+    <source src="video_spesial.mp4" type="video/mp4">
+    Browser kamu tidak mendukung video.
+  </video>
+  <button onclick="nextLayer('layer4')">Lanjut ➡️</button>
+</div>
+
+<!-- Layer 4 - Memory Game -->
+<div id="layer4" class="layer">
+  <h2>Mini Game Memory: Temukan Semua Pasangan 💖</h2>
+  <!-- Memory game container akan ditambahkan lewat JS -->
+  <div id="videoModal">
+    <video id="surpriseVideo" controls>
+      <source src="surprise.mp4" type="video/mp4" />
+      Browser kamu tidak mendukung video.
+    </video>
+  </div>
+</div>
+
+<!-- Layer 5 -->
+<div id="layer5" class="layer">
+  <h2>24 Reasons why ILoveYou Sooo Muchh 💕</h2>
+  <ol style="text-align: left; max-width: 600px; margin: 0 auto;">
+    <li>Kamu bukan cuma pacar, tapi seseorang yang udah nemenin aku dari dulu.</li>
+    <li>Kamu selalu tahu cara bikin aku ketawa, bahkan aku bisa lupa kalo aku tuh lgi bt HHAHAHA kocak.</li>
+    <li>Jaman Massenger kita seru banget ga boong.</li>
+    <li>Semoga kamu gapernah bosen ya, dengerin aku ngomong mulu.</li>
+    <li>Kita bisa ngobrol dari hal receh sampe yang dalam banget.</li>
+    <li>Kamu tuh konyolnya lucu, kadang ga abis pikir deh.</li>
+    <li>Kamu tahu cara nemenin aku tanpa harus ngomong apa-apa, TAPI MAUNYA DIAJAK NGOMONG WKWK.</li>
+    <li>Kamu hafal CERITA-CERITA aku, dari yang dulu-dulu ingett.</li>
+    <li>Kita sering berantem konyol, tapi ujungnya ngakak bareng atau kaya gajadi kesel ajah.</li>
+    <li>Syukur udh ga sering ngambek diemin aku, pinter ayank.</li>
+    <li>Melting bgt liat senyumnya, gemess aaa.</li>
+    <li>Kamu selalu ingetin aku, buat jauhin orang yang ga bener.</li>
+    <li>Kalo lagi sama kamu, beneran lupa deh capenya jalan xpander sama pajero.</li>
+    <li>Selalu nyemangatin aku, makasih sayang.</li>
+    <li>Kita bisa bikin lelucon yang orang lain gak paham, karna aku cuman cerita sama kamu.</li>
+    <li>Aku seneng kalo kamu tanyain "kenapa sayang?".</li>
+    <li>Kamu diem-diem tuh analisis sifat aku ya.</li>
+    <li>Ga ngapa-ngapain aja sama kamu SERUUU, kok bisa ya?.</li>
+    <li>Kamu itu tempat pulang, literally yang bakal aku cari setelah aku pulang kerja, pulang main setelah ibu.</li>
+    <li>Kamu bikin aku percaya kalo beneran aku bisa rasain cinta, apalagi dari pertemanan loh.</li>
+    <li>AKU NGERTI KAMU, KAU MENGERTI AKU, AKU SAYANG KAMU SELAMANYAAA~.</li>
+    <li>Kamu selalu punya cara sendiri buat nyelesain masalah, dan aku juga belajar dari kamu.</li>
+    <li>Dari dulu sama kamu gapernah bosen, kesel kadang doang kalo ngeyel tpi abis itu kocak lagi.</li>
+    <li>Hal terbaik yang gapernah aku rencanakan dan gapernah aku sangka-sangka, ANJAY.</li>
+  </ol>
+  <button onclick="nextLayer('layer6')">Lanjut</button>
+</div>
+
+<div id="layer6" class="layer">
+  <h2>Terima kasih 💗</h2>
+  <p>Seneng rasanya bisa bahagia bareng kamu sejauh ini.</p>
+  <p>I love you so much 🥺💕</p>
+</div>
+
+
+<!-- Script -->
+<script>
+  function nextLayer(id) {
+    document.querySelectorAll('.layer').forEach(layer => layer.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function createMemoryGame() {
+    const images = ['img1.jpg','img2.jpg','img3.jpg','img4.jpg','img5.jpg','img6.jpg'];
+    const cardsArray = [...images, ...images];
+    cardsArray.sort(() => 0.5 - Math.random());
+
+    const gameContainer = document.createElement('div');
+    gameContainer.className = 'memory-game';
+    document.getElementById('layer4').appendChild(gameContainer);
+
+    let firstCard = null;
+    let secondCard = null;
+    let lock = false;
+    let matchedPairs = 0;
+
+    cardsArray.forEach(src => {
+      const card = document.createElement('div');
+      card.className = 'memory-card';
+
+      const inner = document.createElement('div');
+      inner.className = 'memory-card-inner';
+
+      const front = document.createElement('div');
+      front.className = 'memory-card-front';
+      front.style.backgroundImage = `url('${src}')`;
+
+      const back = document.createElement('div');
+      back.className = 'memory-card-back';
+
+      inner.appendChild(front);
+      inner.appendChild(back);
+      card.appendChild(inner);
+
+      card.addEventListener('click', () => {
+        if (lock || card.classList.contains('flipped')) return;
+
+        card.classList.add('flipped');
+
+        if (!firstCard) {
+          firstCard = card;
+        } else {
+          secondCard = card;
+          lock = true;
+
+          const img1 = firstCard.querySelector('.memory-card-front').style.backgroundImage;
+          const img2 = secondCard.querySelector('.memory-card-front').style.backgroundImage;
+
+          if (img1 === img2) {
+            matchedPairs++;
+            firstCard = null;
+            secondCard = null;
+            lock = false;
+
+            if (matchedPairs === images.length) {
+              setTimeout(() => {
+                document.getElementById('videoModal').style.display = 'flex';
+                document.getElementById('surpriseVideo').play();
+              }, 800);
+            }
+          } else {
+            setTimeout(() => {
+              firstCard.classList.remove('flipped');
+              secondCard.classList.remove('flipped');
+              firstCard = null;
+              secondCard = null;
+              lock = false;
+            }, 1000);
+          }
+        }
+      });
+
+      gameContainer.appendChild(card);
+    });
+    const surpriseVideo = document.getElementById('surpriseVideo');
+    surpriseVideo.addEventListener('ended', () => {
+      document.getElementById('videoModal').style.display = 'none';
+
+      const btn = document.createElement('button');
+      btn.textContent = 'Lanjut ➡️';
+      btn.onclick = () => nextLayer('layer5');
+      document.getElementById('layer4').appendChild(btn);
+    });
+
+  }
+
+  // Deteksi saat layer4 aktif, baru jalankan game
+  const observer = new MutationObserver(() => {
+    if (document.getElementById('layer4').classList.contains('active') && !document.querySelector('.memory-game')) {
+      createMemoryGame();
+    }
+  });
+  observer.observe(document.body, { attributes: true, childList: false, subtree: true });
+</script>
+
+</body>
+</html>
